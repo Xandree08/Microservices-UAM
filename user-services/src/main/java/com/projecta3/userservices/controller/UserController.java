@@ -31,11 +31,6 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
-    @PostMapping
-    public ResponseEntity<String> addUser(@RequestBody User user) {
-        userService.createUser(user);
-        return ResponseEntity.ok("User created");
-    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteUser(@PathParam("id") Long id) {

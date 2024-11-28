@@ -14,6 +14,8 @@ public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Long userId;
+    private String Student;
     private String description;
     private LocalDateTime createdAt;
     private String status;
@@ -23,10 +25,26 @@ public class Ticket {
         this.status = "Open";
     }
 
-    public Ticket(String description, LocalDateTime createdAt, String status) {
+    public Ticket(String description, String status) {
         this.description = description;
-        this.createdAt = createdAt;
         this.status = status;
+    }
+
+
+    public String getStudent() {
+        return Student;
+    }
+
+    public void setStudent(String student) {
+        Student = student;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public Long getId() {

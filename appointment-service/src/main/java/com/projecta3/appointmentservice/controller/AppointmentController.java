@@ -1,8 +1,11 @@
 package com.projecta3.appointmentservice.controller;
 
+import com.projecta3.appointmentservice.dtos.AppointmentResponse;
 import com.projecta3.appointmentservice.entities.Appointment;
 import com.projecta3.appointmentservice.services.AppointmentServices;
+import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,8 +19,17 @@ public class AppointmentController {
     private AppointmentServices appointmentService;
 
     @PostMapping
-    public ResponseEntity<Appointment> createAppointment(@RequestBody Appointment appointment) {
-        return ResponseEntity.ok(appointmentService.createAppointment(appointment));
+    public ResponseEntity<Appointment> createAppointment(@RequestBody AppointmentResponse request) {
+        try {
+            Appointment appointment = appointmentService.createAppointment(request);
+            return ResponseEntity.status(HttpStatus.CREATED).body(appointment);
+        } catch (FeignException.NotFound ex) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(null);
+        } catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(null);
+        }
     }
 
     @GetMapping

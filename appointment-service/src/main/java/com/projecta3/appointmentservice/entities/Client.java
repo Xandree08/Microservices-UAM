@@ -1,42 +1,29 @@
-package com.projecta3.userservices.entities;
+package com.projecta3.appointmentservice.entities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
-@Table(name = "users")
-public class User {
+public class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
     private String ra;
 
-    @Column(nullable = false)
     private String email;
 
-    @Column(nullable = false)
-    private String password;
+    public Client() {}
 
-    public User (){}
-
-    public User (String name, String ra, String email , String password) {
+    public Client(String name, String ra, String email) {
         this.name = name;
         this.ra = ra;
         this.email = email;
-        this.password = password;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public Long getId() {
