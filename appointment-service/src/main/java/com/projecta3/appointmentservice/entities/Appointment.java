@@ -1,11 +1,9 @@
 package com.projecta3.appointmentservice.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 public class Appointment {
@@ -14,18 +12,45 @@ public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long ticketId; // Relacionado ao ticket
+    private Long ticketId;
+    private Long userId;
+    private String student;
+    private String ticketDescription;
     private LocalDateTime appointmentTime;
     private String status;
 
     public Appointment() {
-        this.status = "SCHEDULED";
     }
 
-    public Appointment(Long ticketId, LocalDateTime appointmentTime, String status) {
+    public Appointment (Long ticketId, LocalDateTime appointmentTime, String status, Long userId) {
         this.ticketId = ticketId;
         this.appointmentTime = appointmentTime;
         this.status = status;
+        this.userId = userId;
+    }
+
+    public String getTicketDescription() {
+        return ticketDescription;
+    }
+
+    public void setTicketDescription(String ticketDescription) {
+        this.ticketDescription = ticketDescription;
+    }
+
+    public String getStudent() {
+        return student;
+    }
+
+    public void setStudent(String student) {
+        this.student = student;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public Long getId() {

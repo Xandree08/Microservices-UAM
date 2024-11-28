@@ -1,30 +1,16 @@
-package com.projecta3.userservices.entities;
+package com.projecta3.ticketservices.dtos;
 
-import jakarta.persistence.*;
+public class UserResponse {
 
-@Entity
-@Table(name = "users")
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(nullable = false)
     private String name;
-
-    @Column(nullable = false)
     private String ra;
-
-    @Column(nullable = false)
     private String email;
-
-    @Column(nullable = false)
     private String password;
 
-    public User (){}
+    public UserResponse(){}
 
-    public User (String name, String ra, String email , String password) {
+    public UserResponse(String name, String ra, String email, String password) {
         this.name = name;
         this.ra = ra;
         this.email = email;
@@ -71,3 +57,4 @@ public class User {
         this.email = email;
     }
 }
+
